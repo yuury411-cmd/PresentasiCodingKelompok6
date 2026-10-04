@@ -1,0 +1,1127 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Website edukasi interaktif Tips Belajar Efektif untuk tugas sekolah dan presentasi siswa.">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Tips Belajar Efektif — Website Edukasi Interaktif</title>
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --surface: #ffffff;
+      --surface-2: #f1f5ff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --primary-soft: #eef2ff;
+      --success: #047857;
+      --success-soft: #ecfdf5;
+      --danger: #be123c;
+      --danger-soft: #fff1f2;
+      --warning: #b45309;
+      --warning-soft: #fffbeb;
+      --shadow: 0 12px 30px rgba(15, 23, 42, .08);
+      --shadow-lg: 0 22px 55px rgba(30, 41, 59, .13);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; }
+    img, video, audio { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid rgba(79,70,229,.28); outline-offset: 3px; }
+
+    .container { width: min(var(--max), calc(100% - 32px)); margin-inline: auto; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+    .hidden { display: none !important; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand {
+      display: inline-flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0;
+    }
+    .brand-mark {
+      width: 44px; height: 44px; border-radius: 13px;
+      display: grid; place-items: center; color: #fff; font-size: 22px; flex: 0 0 auto;
+      background: linear-gradient(135deg, var(--primary-dark), #7c3aed);
+      box-shadow: 0 10px 20px rgba(79,70,229,.22);
+    }
+    .brand-title { display: block; font-weight: 800; letter-spacing: -.02em; font-size: 16px; }
+    .brand-subtitle { display: block; font-size: 11px; color: var(--muted); }
+
+    .desktop-nav { display: none; align-items: center; gap: 4px; }
+    .nav-btn {
+      border: 0; background: transparent; color: #64748b; padding: 9px 12px;
+      border-radius: 10px; font-weight: 700; font-size: 13px; transition: .2s ease;
+    }
+    .nav-btn:hover, .nav-btn.active { color: var(--primary); background: var(--primary-soft); }
+    .menu-toggle {
+      width: 44px; height: 44px; border: 1px solid var(--border); background: #fff;
+      border-radius: 12px; color: #334155; display: grid; place-items: center; font-size: 20px;
+    }
+    .mobile-menu { border-top: 1px solid var(--border); padding: 10px 16px 15px; background: #fff; }
+    .mobile-menu .nav-btn { display: block; width: 100%; text-align: left; margin: 2px 0; padding: 12px 13px; }
+
+    main { padding: 28px 0 10px; }
+    .view { animation: enter .34s ease both; }
+    @keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero {
+      position: relative; overflow: hidden; border-radius: 28px; padding: 42px 26px;
+      background:
+        radial-gradient(circle at 86% 18%, rgba(255,255,255,.16), transparent 25%),
+        radial-gradient(circle at 12% 92%, rgba(129,140,248,.35), transparent 25%),
+        linear-gradient(140deg, #1e1b4b, #312e81 48%, #5b21b6);
+      color: #fff; box-shadow: var(--shadow-lg);
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 250px; height: 250px; border: 1px solid rgba(255,255,255,.11);
+      border-radius: 50%; right: -70px; bottom: -90px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 7px; padding: 7px 11px; border-radius: 999px;
+      background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.12); font-size: 11px; font-weight: 800;
+      letter-spacing: .05em; text-transform: uppercase;
+    }
+    .hero h1 { font-size: clamp(34px, 8vw, 62px); line-height: 1.02; margin: 20px 0 12px; letter-spacing: -.045em; }
+    .hero .lead { color: #dbeafe; font-weight: 700; font-size: clamp(18px, 3vw, 23px); margin: 0 0 14px; }
+    .hero .desc { color: #cbd5e1; max-width: 760px; margin: 0; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 26px; }
+
+    .btn {
+      border: 1px solid transparent; min-height: 44px; padding: 10px 16px; border-radius: 12px; font-weight: 800;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 12px 22px rgba(79,70,229,.2); }
+    .btn-primary:hover { background: #4338ca; }
+    .btn-light { background: #fff; color: #1e1b4b; }
+    .btn-light:hover { background: #eef2ff; }
+    .btn-ghost { background: #fff; color: #334155; border-color: var(--border); }
+    .btn-ghost:hover { background: #f8fafc; }
+    .btn-danger { background: var(--danger-soft); color: var(--danger); border-color: #fecdd3; }
+    .btn-success { background: #059669; color: #fff; }
+    .btn:disabled { opacity: .45; box-shadow: none; transform: none; }
+
+    .section-head { margin: 38px 0 18px; display: flex; align-items: end; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .section-kicker { color: var(--primary); text-transform: uppercase; font-weight: 900; letter-spacing: .08em; font-size: 11px; }
+    .section-head h2 { margin: 2px 0 5px; font-size: clamp(26px, 5vw, 36px); line-height: 1.15; letter-spacing: -.03em; }
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .feature-grid, .tip-grid, .member-grid { display: grid; gap: 16px; }
+    .feature-grid { grid-template-columns: 1fr; margin-top: 20px; }
+    .feature-card, .tip-card, .member-card, .material-card, .media-card, .closing-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 4px 15px rgba(15,23,42,.04);
+    }
+    .feature-card, .tip-card { padding: 20px; transition: .2s ease; }
+    .feature-card:hover, .tip-card:hover, .member-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .feature-icon { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--primary-soft); color: var(--primary); font-size: 20px; margin-bottom: 12px; }
+    .feature-card h3, .tip-card h3 { margin: 0 0 7px; font-size: 17px; }
+    .feature-card p, .tip-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .progress-box { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 14px; box-shadow: 0 3px 12px rgba(15,23,42,.03); }
+    .progress-row { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; font-weight: 800; margin-bottom: 8px; }
+    .progress-track { height: 11px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 16%; background: linear-gradient(90deg, var(--primary), #7c3aed); border-radius: inherit; transition: width .45s cubic-bezier(.2,.7,.2,1); }
+    .stepper { display: grid; grid-template-columns: repeat(6,1fr); gap: 7px; margin-top: 12px; }
+    .step { height: 8px; border-radius: 99px; background: #e2e8f0; transition: .25s ease; }
+    .step.done, .step.current { background: linear-gradient(90deg, var(--primary), #7c3aed); }
+
+    .material-card { padding: 18px; margin-top: 18px; }
+    .material-top { display: flex; justify-content: space-between; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+    .badge { display: inline-flex; padding: 7px 10px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-dark); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; }
+    .material-title { margin: 12px 0 4px; font-size: clamp(28px, 5vw, 40px); line-height: 1.12; letter-spacing: -.035em; }
+    .material-subtitle { margin: 0; color: var(--muted); }
+    .material-body { margin-top: 22px; display: grid; gap: 18px; }
+    .material-intro { background: linear-gradient(135deg, #f8faff, #eef2ff); border: 1px solid #dfe4ff; border-radius: 18px; padding: 17px; }
+    .material-intro strong { color: #312e81; }
+    .material-content h3 { margin: 0 0 9px; font-size: 18px; }
+    .material-content p { color: #475569; margin: 0 0 11px; }
+    .material-content ul { margin: 0; padding-left: 20px; color: #475569; }
+    .material-content li { margin: 7px 0; }
+    .key-box { background: #0f172a; color: #f8fafc; border-radius: 18px; padding: 17px; }
+    .key-box small { color: #c7d2fe; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; }
+    .key-box p { margin: 8px 0 0; }
+    .material-actions { border-top: 1px solid var(--border); margin-top: 22px; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .material-actions .center-label { color: var(--muted); font-size: 13px; font-weight: 800; }
+
+    .tip-grid { grid-template-columns: 1fr; }
+    .tip-number { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--primary-soft); color: var(--primary); font-weight: 900; margin-bottom: 12px; }
+
+    .member-grid { grid-template-columns: 1fr; }
+    .member-card { padding: 16px; display: flex; flex-direction: column; gap: 15px; }
+    .member-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .member-label { font-weight: 900; color: var(--primary-dark); font-size: 12px; background: var(--primary-soft); padding: 7px 10px; border-radius: 999px; }
+    .member-photo-wrap { position: relative; border-radius: 16px; overflow: hidden; background: #f1f5f9; border: 1px solid var(--border); aspect-ratio: 1 / 1; display: grid; place-items: center; }
+    .member-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder { text-align: center; color: #94a3b8; padding: 20px; }
+    .photo-placeholder .emoji { font-size: 42px; display: block; margin-bottom: 5px; }
+    .field-grid { display: grid; grid-template-columns: 1fr; gap: 11px; }
+    .field label { display: block; font-size: 12px; font-weight: 900; color: #475569; margin-bottom: 6px; }
+    .field input { width: 100%; border: 1px solid #cbd5e1; border-radius: 11px; min-height: 44px; padding: 10px 12px; background: #fafcff; color: var(--text); }
+    .field input:focus { border-color: var(--primary); outline: 3px solid rgba(79,70,229,.11); }
+    .inline-error { display: block; min-height: 17px; color: var(--danger); font-size: 11px; margin-top: 4px; }
+    .member-actions { display: grid; grid-template-columns: 1fr auto; gap: 9px; }
+    .member-actions .btn { width: 100%; }
+
+    .media-card { padding: 18px; max-width: 850px; margin: 0 auto; }
+    .media-stage { border-radius: 18px; background: #0b1120; min-height: 300px; display: grid; place-items: center; overflow: hidden; border: 1px solid #1e293b; }
+    .media-stage video { width: 100%; max-height: 62vh; background: #000; object-fit: contain; }
+    .media-stage audio { width: min(88%, 680px); }
+    .media-placeholder { text-align: center; padding: 28px; color: #94a3b8; }
+    .media-placeholder .media-icon { font-size: 54px; display: block; margin-bottom: 8px; }
+    .media-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-top: 15px; }
+    .media-note { margin: 0; color: var(--muted); font-size: 12px; }
+    .alert { margin: 0 0 15px; padding: 12px 14px; border-radius: 12px; font-size: 13px; font-weight: 800; }
+    .alert.error { color: var(--danger); background: var(--danger-soft); border: 1px solid #fecdd3; }
+    .alert.success { color: var(--success); background: var(--success-soft); border: 1px solid #a7f3d0; }
+    .alert.info { color: #1d4ed8; background: #eff6ff; border: 1px solid #bfdbfe; }
+    .format-note { margin-top: 13px; color: #64748b; font-size: 12px; }
+    .format-note code { background: #f1f5f9; padding: 2px 5px; border-radius: 5px; }
+
+    .media-info-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
+    .media-info-item { background: #f8fafc; border: 1px solid var(--border); border-radius: 14px; padding: 12px 13px; }
+    .media-info-item span { display: block; color: var(--muted); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; }
+    .media-info-item strong { display: block; margin-top: 3px; overflow-wrap: anywhere; font-size: 14px; }
+    .quality-panel { margin-top: 16px; padding: 15px; border: 1px solid var(--border); border-radius: 16px; background: #fbfcff; }
+    .quality-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .quality-row label { font-size: 13px; font-weight: 900; color: #334155; }
+    .quality-select { min-height: 44px; border: 1px solid #cbd5e1; border-radius: 11px; padding: 8px 12px; background: #fff; color: var(--text); font-weight: 800; }
+    .engine-status { margin: 9px 0 0; color: var(--muted); font-size: 12px; }
+    .reset-panel { margin-top: 16px; display: flex; justify-content: flex-end; }
+    .btn-small { min-height: 38px; padding: 8px 12px; font-size: 12px; }
+
+    .closing-card { max-width: 900px; margin: 10px auto 0; padding: 35px 22px; text-align: center; position: relative; overflow: hidden; background: linear-gradient(145deg, #1e1b4b, #312e81, #5b21b6); color: #fff; box-shadow: var(--shadow-lg); }
+    .closing-icon { font-size: 58px; margin-bottom: 10px; }
+    .closing-card h2 { margin: 0 0 12px; font-size: clamp(30px, 7vw, 48px); letter-spacing: -.04em; line-height: 1.05; }
+    .closing-card p { color: #dbeafe; max-width: 680px; margin: 0 auto 23px; }
+    .thanks { font-size: 18px; font-weight: 900; margin-bottom: 22px; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 18px; transform: translate(-50%, 130%); opacity: 0;
+      background: #0f172a; color: #fff; padding: 11px 14px; border-radius: 12px; font-size: 12px; font-weight: 800;
+      z-index: 100; box-shadow: var(--shadow); transition: .25s ease; max-width: min(92vw, 520px); text-align: center;
+    }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+    footer { margin-top: 48px; border-top: 1px solid var(--border); background: #fff; }
+    .footer-inner { min-height: 92px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px; color: var(--muted); font-size: 12px; }
+    .footer-inner strong { color: var(--text); }
+
+    @media (min-width: 560px) { .media-info-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    @media (min-width: 680px) {
+      .feature-grid, .tip-grid { grid-template-columns: repeat(2, 1fr); }
+      .field-grid { grid-template-columns: 1fr 1fr; }
+      .field:first-child { grid-column: 1 / -1; }
+      .hero { padding: 58px 54px; }
+      .material-body { grid-template-columns: 1.45fr .85fr; align-items: start; }
+      .material-intro { grid-column: 1 / -1; }
+      .material-content { min-width: 0; }
+    }
+
+    @media (min-width: 900px) {
+      .desktop-nav { display: flex; }
+      .menu-toggle, .mobile-menu { display: none !important; }
+      .feature-grid { grid-template-columns: repeat(3, 1fr); }
+      .tip-grid { grid-template-columns: repeat(3, 1fr); }
+      .member-grid { grid-template-columns: repeat(3, 1fr); }
+      .container { width: min(var(--max), calc(100% - 48px)); }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(var(--max), calc(100% - 22px)); }
+      main { padding-top: 17px; }
+      .hero { border-radius: 22px; padding: 31px 19px; }
+      .material-card, .media-card { padding: 14px; border-radius: 19px; }
+      .material-actions { align-items: stretch; }
+      .material-actions .btn, .material-actions .center-label { width: 100%; }
+      .member-actions { grid-template-columns: 1fr; }
+      .media-stage { min-height: 240px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <button class="brand" type="button" aria-label="Kembali ke Beranda" data-nav="home" style="border:0;background:transparent;padding:0;text-align:left;">
+        <span class="brand-mark" aria-hidden="true">📚</span>
+        <span><span class="brand-title">BelajarEfektif</span><span class="brand-subtitle">Presentasi Edukasi Siswa</span></span>
+      </button>
+
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <button class="nav-btn active" type="button" data-nav="home">🏠 Beranda</button>
+        <button class="nav-btn" type="button" data-nav="materi">📖 Materi</button>
+        <button class="nav-btn" type="button" data-nav="tips">💡 Tips</button>
+        <button class="nav-btn" type="button" data-nav="anggota">📸 Dokumentasi</button>
+        <button class="nav-btn" type="button" data-nav="media">🎥 Video</button>
+        <button class="nav-btn" type="button" data-nav="penutup">❤️ Penutup</button>
+      </nav>
+
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Buka menu navigasi">☰</button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu hidden">
+      <nav aria-label="Navigasi mobile">
+        <button class="nav-btn active" type="button" data-nav="home">🏠 Beranda</button>
+        <button class="nav-btn" type="button" data-nav="materi">📖 Materi</button>
+        <button class="nav-btn" type="button" data-nav="tips">💡 Tips</button>
+        <button class="nav-btn" type="button" data-nav="anggota">📸 Dokumentasi</button>
+        <button class="nav-btn" type="button" data-nav="media">🎥 Video</button>
+        <button class="nav-btn" type="button" data-nav="penutup">❤️ Penutup</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="storage-alert" class="alert info hidden" role="status" aria-live="polite"></div>
+
+    <!-- HOME -->
+    <section id="view-home" class="view" data-view="home" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="eyebrow">✨ WEBSITE EDUKASI INTERAKTIF</div>
+        <h1 id="home-title">📚 TIPS BELAJAR EFEKTIF</h1>
+        <p class="lead">“Belajar lebih cerdas, bukan hanya lebih lama.”</p>
+        <p class="desc">Website ini berisi berbagai tips sederhana yang dapat membantu kita belajar dengan lebih fokus, teratur, efektif, dan konsisten.</p>
+        <div class="hero-actions">
+          <button class="btn btn-light" type="button" data-action="start-learning">▶ Mulai Belajar</button>
+          <button class="btn" type="button" data-nav="anggota" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.18);">👥 Lihat Anggota</button>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Mengapa website ini dibuat?</div>
+          <h2>Belajar dengan cara yang lebih terarah</h2>
+          <p>Materi singkat, progress nyata, dokumentasi anggota, dan media pembelajaran dalam satu halaman.</p>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon">📖</div><h3>6 Materi Bertahap</h3><p>Pelajari dasar belajar efektif, tujuan, waktu, fokus, teknik belajar, lalu evaluasi dan konsistensi.</p></article>
+        <article class="feature-card"><div class="feature-icon">📊</div><h3>Progress Otomatis</h3><p>Progress berubah saat berpindah materi: 16% → 33% → 50% → 66% → 83% → 100%.</p></article>
+        <article class="feature-card"><div class="feature-icon">🎥</div><h3>Media Hingga 1 GB</h3><p>Slot media menerima video maupun audio yang kompatibel dengan browser dan tidak mengirim file ke server.</p></article>
+      </div>
+    </section>
+
+    <!-- MATERIAL -->
+    <section id="view-materi" class="view hidden" data-view="materi" aria-labelledby="material-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Pembelajaran bertahap</div>
+          <h2>📖 MATERI BELAJAR</h2>
+          <p>Ikuti enam materi secara berurutan. Posisi dan progress terakhir disimpan secara lokal jika browser mengizinkannya.</p>
+        </div>
+      </div>
+
+      <div class="progress-box" aria-label="Progress belajar">
+        <div class="progress-row"><span>Progress Belajar</span><span id="progress-percent">16%</span></div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="16" aria-label="Progress belajar"><div id="progress-fill" class="progress-fill"></div></div>
+        <div id="stepper" class="stepper" aria-hidden="true"></div>
+      </div>
+
+      <article class="material-card">
+        <div class="material-top">
+          <div>
+            <span id="material-badge" class="badge">Materi 1</span>
+            <h1 id="material-title" class="material-title">Mengenal Belajar Efektif</h1>
+            <p id="material-subtitle" class="material-subtitle">Memahami dasar belajar dengan lebih terarah.</p>
+          </div>
+          <span id="material-counter" class="badge">1 / 6</span>
+        </div>
+
+        <div id="material-body" class="material-body"></div>
+
+        <div class="material-actions">
+          <button id="material-prev" class="btn btn-ghost" type="button">⬅️ Kembali</button>
+          <span id="material-center-label" class="center-label">Materi 1 dari 6</span>
+          <button id="material-next" class="btn btn-primary" type="button">Lanjut ➡️</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- TIPS -->
+    <section id="view-tips" class="view hidden" data-view="tips" aria-labelledby="tips-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Praktik sederhana</div>
+          <h2 id="tips-title">💡 TIPS BELAJAR EFEKTIF</h2>
+          <p>Enam kebiasaan yang dapat membantu membuat sesi belajar lebih fokus dan teratur.</p>
+        </div>
+      </div>
+      <div class="tip-grid">
+        <article class="tip-card"><div class="tip-number">1</div><h3>🎯 Tentukan Tujuan</h3><p>Tentukan apa yang ingin dicapai sebelum mulai belajar agar sesi terasa lebih jelas dan terarah.</p></article>
+        <article class="tip-card"><div class="tip-number">2</div><h3>⏰ Atur Waktu</h3><p>Buat jadwal belajar yang realistis dan konsisten, termasuk waktu untuk beristirahat.</p></article>
+        <article class="tip-card"><div class="tip-number">3</div><h3>📱 Kurangi Gangguan</h3><p>Jauhkan hal-hal yang mengganggu konsentrasi, termasuk notifikasi yang tidak diperlukan.</p></article>
+        <article class="tip-card"><div class="tip-number">4</div><h3>📝 Buat Catatan</h3><p>Tuliskan informasi penting dengan bahasa sendiri agar lebih mudah dipahami dan diingat.</p></article>
+        <article class="tip-card"><div class="tip-number">5</div><h3>🔄 Lakukan Review</h3><p>Ulangi materi secara berkala dan gunakan latihan singkat untuk mengecek pemahaman.</p></article>
+        <article class="tip-card"><div class="tip-number">6</div><h3>😴 Istirahat</h3><p>Berikan waktu istirahat agar tubuh dan pikiran tetap segar sehingga fokus tidak cepat menurun.</p></article>
+      </div>
+    </section>
+
+    <!-- MEMBERS -->
+    <section id="view-anggota" class="view hidden" data-view="anggota" aria-labelledby="members-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Dokumentasi kelompok</div>
+          <h2 id="members-title">📸 DOKUMENTASI / ANGGOTA</h2>
+          <p>Tepat 6 slot. Setiap slot terisolasi untuk foto, Nama, No. Absen, dan Kelas masing-masing.</p>
+        </div>
+      </div>
+      <div id="members-grid" class="member-grid"></div>
+    </section>
+
+    <!-- MEDIA -->
+    <section id="view-media" class="view hidden" data-view="media" aria-labelledby="media-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Media pembelajaran lokal</div>
+          <h2 id="media-title">🎥 VIDEO PEMBELAJARAN</h2>
+          <p>Satu slot media besar untuk video atau audio. Maksimum file adalah tepat 1 GiB (1 × 1024 × 1024 × 1024 bytes).</p>
+        </div>
+      </div>
+
+      <div class="media-card">
+        <div id="media-alert" class="alert hidden" role="status" aria-live="polite"></div>
+        <div id="media-stage" class="media-stage">
+          <div id="media-placeholder" class="media-placeholder">
+            <span class="media-icon">🎬</span>
+            <strong>Belum ada video atau audio</strong>
+            <div style="font-size:12px;margin-top:3px;">Pilih file media dari perangkat untuk menampilkan preview.</div>
+          </div>
+          <video id="media-video" class="hidden" controls playsinline preload="metadata" aria-label="Pemutar video pembelajaran"></video>
+          <audio id="media-audio" class="hidden" controls preload="metadata" aria-label="Pemutar audio pembelajaran"></audio>
+        </div>
+        <div class="media-meta">
+          <p id="media-note" class="media-note">Media diproses langsung di browser. File besar seperti video 1 GB tidak disimpan di localStorage.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <input id="media-input" class="hidden" type="file" accept="video/*,audio/*">
+            <button id="media-pick" class="btn btn-primary" type="button">➕ Tambahkan Video / Audio</button>
+            <button id="media-remove" class="btn btn-danger hidden" type="button">🗑️ Hapus</button>
+          </div>
+        </div>
+        <p class="format-note">Format yang umum didukung: <code>MP4</code>, <code>WebM</code>, <code>OGG/OGV</code>, <code>MOV</code>, <code>M4V</code>, <code>MP3</code>, <code>WAV</code>, <code>OGG</code>, <code>M4A</code>, <code>AAC</code>, dan format media lain yang benar-benar dapat diputar oleh browser. Kemampuan playback tetap bergantung pada browser, codec, dan perangkat.</p>
+        <div id="media-info" class="media-info-grid hidden" aria-live="polite">
+          <div class="media-info-item"><span>Nama file</span><strong id="info-name">Tidak tersedia</strong></div>
+          <div class="media-info-item"><span>Ukuran</span><strong id="info-size">Tidak tersedia</strong></div>
+          <div class="media-info-item"><span>Resolusi</span><strong id="info-resolution">Tidak tersedia</strong></div>
+          <div class="media-info-item"><span>Format</span><strong id="info-format">Tidak tersedia</strong></div>
+          <div class="media-info-item"><span>Durasi</span><strong id="info-duration">Tidak tersedia</strong></div>
+          <div class="media-info-item"><span>Kualitas</span><strong id="info-quality">Original Quality</strong></div>
+        </div>
+        <div id="quality-panel" class="quality-panel hidden">
+          <div class="quality-row">
+            <label for="quality-select">🎞️ Kualitas Video</label>
+            <select id="quality-select" class="quality-select" aria-describedby="quality-status">
+              <option value="360">360p</option>
+              <option value="480">480p</option>
+              <option value="720" selected>720p</option>
+              <option value="1080">1080p</option>
+              <option value="1440">1440p</option>
+            </select>
+          </div>
+          <p id="quality-status" class="engine-status">Original Quality — browser memutar file sumber. Engine transcoding/upscaling tidak diaktifkan pada halaman ini, sehingga tidak ada klaim peningkatan resolusi palsu.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section id="view-penutup" class="view hidden" data-view="penutup" aria-labelledby="closing-title">
+      <div class="closing-card">
+        <div class="closing-icon" aria-hidden="true">🎉</div>
+        <h2 id="closing-title">PEMBELAJARAN SELESAI!</h2>
+        <p>Semoga tips belajar yang telah dibahas dapat membantu kita belajar dengan lebih efektif, fokus, dan konsisten.</p>
+        <div class="thanks">🙏 TERIMA KASIH</div>
+        <p>Selamat belajar dan terus berkembang!</p>
+        <button id="restart-learning" class="btn btn-light" type="button">🔄 Ulangi Materi</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>Tips Belajar Efektif</strong> • Website Tugas Sekolah Profesional</div>
+      <div>Dibuat untuk pembelajaran yang lebih terarah, interaktif, dan mudah digunakan.</div>
+      <div class="reset-panel"><button id="reset-data" class="btn btn-danger btn-small" type="button">🔄 Reset Data Lokal</button></div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    'use strict';
+
+    const MAX_MEDIA_BYTES = 1 * 1024 * 1024 * 1024;
+    const PROGRESS_VALUES = [16.7, 33.3, 50, 66.7, 83.3, 100];
+    const STORAGE_KEYS = {
+      members: 'tips-belajar-efektif-members-v2',
+      progress: 'tips-belajar-efektif-progress-v2',
+      quality: 'tips-belajar-efektif-quality-v1'
+    };
+    const DB_NAME = 'tips-belajar-efektif-db';
+    const DB_VERSION = 1;
+    const PHOTO_STORE = 'memberPhotos';
+    const EXTENSION_TYPES = {
+      mp4: 'video', webm: 'video', ogv: 'video', ogg: 'video', mov: 'video', m4v: 'video',
+      avi: 'video', mkv: 'video', mpeg: 'video', mpg: 'video', m4p: 'video',
+      mp3: 'audio', wav: 'audio', m4a: 'audio', aac: 'audio', flac: 'audio', opus: 'audio',
+      oga: 'audio', aif: 'audio', aiff: 'audio'
+    };
+
+    const materials = [
+      {
+        title: 'Mengenal Belajar Efektif',
+        subtitle: 'Memahami dasar belajar dengan lebih terarah.',
+        intro: 'Belajar efektif berarti menggunakan waktu dan usaha dengan cara yang membantu kita benar-benar memahami, mengingat, dan menggunakan materi.',
+        points: [
+          ['Pengertian belajar efektif', 'Belajar dilakukan dengan tujuan yang jelas, strategi yang sesuai, serta pengecekan pemahaman secara berkala.'],
+          ['Mengapa penting?', 'Belajar yang terstruktur membantu kita mengurangi kebiasaan belajar tanpa arah dan membuat waktu belajar lebih bermakna.'],
+          ['Belajar lama vs efektif', 'Durasi saja tidak menjamin hasil. Cara belajar, fokus, latihan mengingat, dan evaluasi ikut menentukan kualitas belajar.'],
+          ['Manfaat terstruktur', 'Kita dapat mengetahui apa yang harus dipelajari, kapan mengulanginya, dan bagian mana yang masih perlu diperbaiki.']
+        ],
+        key: 'Belajar efektif bukan sekadar menambah jam belajar; yang penting adalah kualitas proses belajar.'
+      },
+      {
+        title: 'Menentukan Tujuan Belajar',
+        subtitle: 'Mulai dari target yang jelas dan dapat dilakukan.',
+        intro: 'Tujuan membantu kita mengetahui hasil apa yang ingin dicapai dan membuat sesi belajar lebih mudah diarahkan.',
+        points: [
+          ['Pentingnya tujuan', 'Tujuan memberikan arah dan membantu menentukan prioritas saat waktu belajar terbatas.'],
+          ['Target jangka pendek', 'Contoh: memahami satu konsep, menyelesaikan 10 soal, atau mampu menjelaskan satu topik dengan bahasa sendiri.'],
+          ['Target jangka panjang', 'Contoh: menyelesaikan satu bab, mempersiapkan ujian, atau menguasai satu kompetensi dalam beberapa minggu.'],
+          ['Buat target konkret', 'Gunakan kalimat yang jelas: apa yang dipelajari, kapan dilakukan, dan bagaimana kita mengecek keberhasilannya.']
+        ],
+        key: 'Tujuan yang jelas membuat kita tahu apa yang harus dilakukan dan bagaimana mengecek apakah target sudah tercapai.'
+      },
+      {
+        title: 'Mengatur Waktu',
+        subtitle: 'Buat jadwal realistis, bukan jadwal yang terlalu padat.',
+        intro: 'Pengaturan waktu membantu membagi usaha belajar menjadi sesi yang lebih teratur sehingga tugas tidak terus ditunda sampai menit terakhir.',
+        points: [
+          ['Membuat jadwal', 'Tentukan waktu belajar yang sesuai dengan rutinitas dan jadikan sebagai kebiasaan.'],
+          ['Menentukan prioritas', 'Kerjakan materi yang paling penting atau paling mendesak terlebih dahulu.'],
+          ['Membagi waktu', 'Pecah tugas besar menjadi bagian yang lebih kecil agar lebih mudah dimulai dan diselesaikan.'],
+          ['Istirahat dan anti-menunda', 'Sediakan jeda. Ketika tugas terasa berat, mulai dari langkah kecil daripada menunggu motivasi sempurna.']
+        ],
+        key: 'Jadwal yang realistis membantu kita konsisten tanpa membuat sesi belajar terasa terlalu berat.'
+      },
+      {
+        title: 'Meningkatkan Fokus',
+        subtitle: 'Ciptakan kondisi yang membantu perhatian bertahan.',
+        intro: 'Fokus lebih mudah dipertahankan ketika lingkungan dan kebiasaan kita mendukung satu tugas pada satu waktu.',
+        points: [
+          ['Kurangi gangguan', 'Matikan notifikasi yang tidak diperlukan dan jauhkan aplikasi yang sering menarik perhatian.'],
+          ['Atur smartphone', 'Aktifkan mode senyap, fokus, atau letakkan smartphone jauh dari jangkauan ketika membutuhkan konsentrasi penuh.'],
+          ['Siapkan tempat belajar', 'Gunakan area yang rapi, nyaman, dan memiliki perlengkapan yang diperlukan.'],
+          ['Atur penggunaan HP', 'Aktifkan mode senyap atau fokus saat membutuhkan konsentrasi penuh.'],
+          ['Satu tugas pada satu waktu', 'Hindari berpindah-pindah tugas terlalu cepat. Selesaikan satu bagian sebelum beralih ke bagian lain.']
+        ],
+        key: 'Fokus menjadi lebih mudah ketika gangguan dikurangi dan kita memberi perhatian penuh pada satu tugas.'
+      },
+      {
+        title: 'Teknik Belajar Efektif',
+        subtitle: 'Gunakan teknik yang membuat kita aktif memproses materi.',
+        intro: 'Selain membaca, cobalah strategi yang membuat otak mengambil kembali dan mengolah informasi.',
+        points: [
+          ['Active Recall', 'Tutup catatan lalu coba jawab pertanyaan dari ingatan.'],
+          ['Spaced Repetition', 'Ulangi materi dengan jeda waktu, bukan hanya dalam satu sesi panjang.'],
+          ['Rangkuman & pertanyaan', 'Susun kembali ide utama menggunakan kata-kata sendiri lalu buat pertanyaan singkat untuk menguji pemahaman.'],
+          ['Latihan soal', 'Kerjakan latihan secara mandiri dan gunakan hasilnya untuk menemukan bagian yang masih perlu dipelajari.'],
+          ['Mengajarkan kembali', 'Jelaskan materi dengan bahasa sendiri seolah-olah sedang mengajari orang lain.']
+        ],
+        key: 'Belajar menjadi lebih aktif ketika kita berlatih mengingat, mengulang dengan jeda, membuat hubungan antar-ide, dan menguji diri.'
+      },
+      {
+        title: 'Evaluasi dan Konsistensi',
+        subtitle: 'Periksa hasil, perbaiki kesalahan, lalu ulangi kebiasaan baik.',
+        intro: 'Evaluasi membantu kita melihat apa yang sudah dikuasai dan apa yang masih perlu diperbaiki.',
+        points: [
+          ['Evaluasi hasil', 'Setelah belajar, cek apakah tujuan sesi sudah tercapai.'],
+          ['Identifikasi kesalahan', 'Catat konsep atau jenis soal yang masih sulit agar bisa dipelajari lagi.'],
+          ['Review berkala', 'Lakukan review dan latihan kembali setelah jeda agar pemahaman tidak berhenti pada satu sesi.'],
+          ['Konsistensi & perbaikan', 'Bangun kebiasaan yang realistis, pertahankan yang berhasil, dan ubah bagian yang tidak efektif.']
+        ],
+        key: 'Belajar efektif berkembang melalui evaluasi, pengulangan, konsistensi, dan perbaikan berkelanjutan.'
+      }
+    ];
+
+    const defaultMembers = Array.from({ length: 6 }, () => ({ name: '', attendance: '', className: '' }));
+    let members = loadMembers();
+    let currentMaterial = clamp(Number(loadStorage(STORAGE_KEYS.progress, 0)), 0, materials.length - 1);
+    let memberPhotoUrls = {};
+    let activeMediaUrl = '';
+    let activeMediaFile = null;
+    let toastTimer = null;
+    let sourceVideoHeight = null;
+    let sourceVideoWidth = null;
+
+    function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+    function safeParse(value, fallback) { try { return JSON.parse(value); } catch { return fallback; } }
+    function loadStorage(key, fallback) {
+      try { return localStorage.getItem(key) ?? fallback; } catch { return fallback; }
+    }
+    function setStorage(key, value) {
+      try { localStorage.setItem(key, value); return true; } catch { return false; }
+    }
+    function loadMembers() {
+      const raw = safeParse(loadStorage(STORAGE_KEYS.members, 'null'), null);
+      if (!Array.isArray(raw) || raw.length !== 6) return defaultMembers.map(m => ({ ...m }));
+      return raw.map(m => ({ name: String(m?.name ?? ''), attendance: String(m?.attendance ?? ''), className: String(m?.className ?? '') }));
+    }
+    function storageAvailable() {
+      try {
+        const key = '__tbe_test__';
+        localStorage.setItem(key, '1');
+        localStorage.removeItem(key);
+        return true;
+      } catch { return false; }
+    }
+
+    function showToast(message) {
+      const el = document.getElementById('toast');
+      el.textContent = message;
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+    }
+
+    function setAlert(id, type, message) {
+      const box = document.getElementById(id);
+      box.className = `alert ${type}`;
+      box.textContent = message;
+      box.classList.remove('hidden');
+    }
+
+    function hideAlert(id) { document.getElementById(id).classList.add('hidden'); }
+
+    function navigate(view) {
+      const target = ['home','materi','tips','anggota','media','penutup'].includes(view) ? view : 'home';
+      document.querySelectorAll('[data-view]').forEach(section => section.classList.toggle('hidden', section.dataset.view !== target));
+      document.querySelectorAll('[data-nav]').forEach(btn => btn.classList.toggle('active', btn.dataset.nav === target));
+      closeMobileMenu();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (target === 'materi') renderMaterial();
+      if (target === 'anggota') renderMembers();
+    }
+
+    function openMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const toggle = document.getElementById('menu-toggle');
+      menu.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Tutup menu navigasi');
+      toggle.textContent = '✕';
+    }
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const toggle = document.getElementById('menu-toggle');
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Buka menu navigasi');
+      toggle.textContent = '☰';
+    }
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.contains('hidden') ? openMobileMenu() : closeMobileMenu();
+    }
+
+    function updateProgressUI() {
+      const value = PROGRESS_VALUES[currentMaterial];
+      const fill = document.getElementById('progress-fill');
+      const percent = document.getElementById('progress-percent');
+      const bar = document.querySelector('.progress-track');
+      fill.style.width = `${value}%`;
+      percent.textContent = `${value}%`;
+      bar.setAttribute('aria-valuenow', String(value));
+      const stepper = document.getElementById('stepper');
+      stepper.innerHTML = materials.map((_, i) => `<span class="step ${i <= currentMaterial ? 'done' : ''} ${i === currentMaterial ? 'current' : ''}></span>`).join('');
+      setStorage(STORAGE_KEYS.progress, String(currentMaterial));
+    }
+
+    function renderMaterial() {
+      const m = materials[currentMaterial];
+      document.getElementById('material-badge').textContent = `Materi ${currentMaterial + 1}`;
+      document.getElementById('material-title').textContent = m.title;
+      document.getElementById('material-subtitle').textContent = m.subtitle;
+      document.getElementById('material-counter').textContent = `${currentMaterial + 1} / ${materials.length}`;
+      document.getElementById('material-center-label').textContent = `Materi ${currentMaterial + 1} dari ${materials.length}`;
+      document.getElementById('material-body').innerHTML = `
+        <div class="material-intro"><strong>Ringkasan:</strong> ${m.intro}</div>
+        <div class="material-content">
+          <h3>📌 Penjelasan & poin penting</h3>
+          ${m.points.map(([title, text]) => `<p><strong>${title}:</strong> ${text}</p>`).join('')}
+        </div>
+        <div class="key-box"><small>Inti Materi</small><p>${m.key}</p></div>
+      `;
+
+      const prev = document.getElementById('material-prev');
+      const next = document.getElementById('material-next');
+      prev.disabled = currentMaterial === 0;
+      if (currentMaterial === materials.length - 1) {
+        next.textContent = '✅ Selesai';
+        next.classList.remove('btn-primary');
+        next.classList.add('btn-success');
+      } else {
+        next.textContent = 'Lanjut ➡️';
+        next.classList.add('btn-primary');
+        next.classList.remove('btn-success');
+      }
+      updateProgressUI();
+    }
+
+    function moveMaterial(direction) {
+      const next = currentMaterial + direction;
+      if (direction > 0 && currentMaterial === materials.length - 1) {
+        finishLearning();
+        return;
+      }
+      if (next < 0 || next >= materials.length) return;
+      currentMaterial = next;
+      renderMaterial();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function finishLearning() {
+      currentMaterial = materials.length - 1;
+      updateProgressUI();
+      navigate('penutup');
+      showToast('🎉 Semua materi selesai. Selamat!');
+    }
+
+    function restartLearning() {
+      currentMaterial = 0;
+      updateProgressUI();
+      navigate('materi');
+      showToast('🔄 Materi diulang dari Materi 1.');
+    }
+
+    function persistMembers() {
+      const clean = members.map(m => ({ name: m.name, attendance: m.attendance, className: m.className }));
+      if (!setStorage(STORAGE_KEYS.members, JSON.stringify(clean))) {
+        showStorageWarning('Data anggota tidak dapat disimpan oleh browser. Website tetap dapat digunakan selama halaman masih terbuka.');
+      }
+    }
+
+    function showStorageWarning(message) {
+      const box = document.getElementById('storage-alert');
+      box.textContent = `⚠️ ${message}`;
+      box.classList.remove('hidden');
+    }
+
+    function openPhotoDB() {
+      return new Promise((resolve, reject) => {
+        if (!('indexedDB' in window)) return reject(new Error('IndexedDB tidak tersedia.'));
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        request.onupgradeneeded = () => {
+          const db = request.result;
+          if (!db.objectStoreNames.contains(PHOTO_STORE)) db.createObjectStore(PHOTO_STORE);
+        };
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error('Database foto gagal dibuka.'));
+      });
+    }
+
+    async function idbPutPhoto(index, blob) {
+      const db = await openPhotoDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(PHOTO_STORE, 'readwrite');
+        tx.objectStore(PHOTO_STORE).put(blob, String(index));
+        tx.oncomplete = () => { db.close(); resolve(); };
+        tx.onerror = () => { db.close(); reject(tx.error || new Error('Foto gagal disimpan.')); };
+      });
+    }
+
+    async function idbGetPhoto(index) {
+      const db = await openPhotoDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(PHOTO_STORE, 'readonly');
+        const request = tx.objectStore(PHOTO_STORE).get(String(index));
+        request.onsuccess = () => resolve(request.result || null);
+        request.onerror = () => reject(request.error || new Error('Foto gagal dibaca.'));
+        tx.oncomplete = () => db.close();
+      });
+    }
+
+    async function idbDeletePhoto(index) {
+      try {
+        const db = await openPhotoDB();
+        await new Promise((resolve, reject) => {
+          const tx = db.transaction(PHOTO_STORE, 'readwrite');
+          tx.objectStore(PHOTO_STORE).delete(String(index));
+          tx.oncomplete = resolve;
+          tx.onerror = () => reject(tx.error);
+        });
+        db.close();
+      } catch (_) { /* graceful fallback */ }
+    }
+
+    async function renderMembers() {
+      const grid = document.getElementById('members-grid');
+      Object.values(memberPhotoUrls).forEach(url => URL.revokeObjectURL(url));
+      memberPhotoUrls = {};
+      grid.innerHTML = '';
+
+      for (let index = 0; index < 6; index++) {
+        const member = members[index];
+        let photoUrl = '';
+        try {
+          const blob = await idbGetPhoto(index + 1);
+          if (blob instanceof Blob) {
+            photoUrl = URL.createObjectURL(blob);
+            memberPhotoUrls[index + 1] = photoUrl;
+          }
+        } catch (_) { /* optional persistence only */ }
+
+        const card = document.createElement('article');
+        card.className = 'member-card';
+        card.innerHTML = `
+          <div class="member-head"><span class="member-label">👤 ANGGOTA ${index + 1}</span>${photoUrl ? '<span style="font-size:11px;color:#64748b;font-weight:800">Foto tersimpan lokal</span>' : ''}</div>
+          <div class="member-photo-wrap">
+            ${photoUrl ? `<img src="${photoUrl}" alt="Foto Anggota ${index + 1}" loading="lazy">` : '<div class="photo-placeholder"><span class="emoji" aria-hidden="true">📷</span><strong>Tambahkan Foto</strong><div style="font-size:11px;margin-top:3px">Rasio 1:1 • object-fit: cover</div></div>'}
+          </div>
+          <div class="field-grid">
+            <div class="field"><label for="member-${index+1}-name">Nama</label><input id="member-${index+1}-name" type="text" maxlength="80" placeholder="Masukkan nama..."><span class="inline-error" id="error-${index+1}-name" aria-live="polite"></span></div>
+            <div class="field"><label for="member-${index+1}-attendance">No. Absen</label><input id="member-${index+1}-attendance" type="text" inputmode="numeric" maxlength="10" placeholder="No. absen..."><span class="inline-error"></span></div>
+            <div class="field"><label for="member-${index+1}-class">Kelas</label><input id="member-${index+1}-class" type="text" maxlength="40" placeholder="Kelas..."><span class="inline-error"></span></div>
+          </div>
+          <div class="member-actions">
+            <input class="sr-only" type="file" id="member-${index+1}-file" accept="image/*">
+            <button class="btn btn-primary" type="button" data-member-upload="${index+1}">${photoUrl ? '🔁 Ganti Foto' : '➕ Tambahkan Foto'}</button>
+            <button class="btn btn-danger" type="button" data-member-remove="${index+1}" ${photoUrl ? '' : 'disabled'}>🗑️ Hapus</button>
+          </div>
+        `;
+        grid.appendChild(card);
+
+        const nameInput = card.querySelector(`#member-${index+1}-name`);
+        const attendanceInput = card.querySelector(`#member-${index+1}-attendance`);
+        const classInput = card.querySelector(`#member-${index+1}-class`);
+        nameInput.value = member.name;
+        attendanceInput.value = member.attendance;
+        classInput.value = member.className;
+
+        [nameInput, attendanceInput, classInput].forEach(input => input.addEventListener('input', () => {
+          members[index] = { name: nameInput.value, attendance: attendanceInput.value, className: classInput.value };
+          [nameInput, attendanceInput, classInput].forEach(field => field.removeAttribute('aria-invalid'));
+          card.querySelector(`#error-${index+1}-name`).textContent = '';
+          persistMembers();
+        }));
+        const validateMember = () => {
+          const checks = [
+            [nameInput, 'Nama', card.querySelector(`#error-${index+1}-name`)],
+            [attendanceInput, 'No. Absen', attendanceInput.parentElement.querySelector('.inline-error')],
+            [classInput, 'Kelas', classInput.parentElement.querySelector('.inline-error')]
+          ];
+          checks.forEach(([field, label, errorEl]) => {
+            if (!field.value.trim()) {
+              errorEl.textContent = `⚠️ Silakan isi ${label} terlebih dahulu.`;
+              field.setAttribute('aria-invalid', 'true');
+            } else {
+              errorEl.textContent = '';
+              field.removeAttribute('aria-invalid');
+            }
+          });
+        };
+        [nameInput, attendanceInput, classInput].forEach(field => field.addEventListener('blur', validateMember));
+
+        const fileInput = card.querySelector(`#member-${index+1}-file`);
+        card.querySelector(`[data-member-upload="${index+1}"]`).addEventListener('click', () => fileInput.click());
+        card.querySelector(`[data-member-remove="${index+1}"]`).addEventListener('click', async () => {
+          await removeMemberPhoto(index + 1);
+        });
+        fileInput.addEventListener('change', async event => {
+          const file = event.target.files?.[0];
+          if (!file) return;
+          await handleMemberPhoto(file, index + 1);
+          event.target.value = '';
+        });
+
+        const img = card.querySelector('img');
+        if (img) img.addEventListener('error', () => {
+          const placeholder = card.querySelector('.member-photo-wrap');
+          placeholder.innerHTML = '<div class="photo-placeholder"><span class="emoji" aria-hidden="true">⚠️</span><strong>Foto gagal ditampilkan</strong><div style="font-size:11px;margin-top:3px">Silakan pilih gambar lain.</div></div>';
+          showToast('⚠️ Foto tidak dapat ditampilkan. Silakan pilih gambar lain.');
+        }, { once: true });
+      }
+    }
+
+    function isUsableImage(file) {
+      const mime = String(file.type || '').toLowerCase();
+      if (mime.startsWith('image/')) return true;
+      const name = String(file.name || '').toLowerCase();
+      const ext = name.includes('.') ? name.split('.').pop() : '';
+      return ['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(ext);
+    }
+
+    async function handleMemberPhoto(file, memberIndex) {
+      if (!isUsableImage(file)) {
+        showToast('⚠️ File tersebut bukan gambar yang dapat digunakan. Pilih JPG, JPEG, PNG, WEBP, atau GIF.');
+        return;
+      }
+      try {
+        await idbPutPhoto(memberIndex, file);
+        persistMembers();
+        await renderMembers();
+        showToast(`✅ Foto Anggota ${memberIndex} berhasil ditambahkan.`);
+      } catch (error) {
+        showToast('⚠️ Foto tidak dapat disimpan secara lokal. Silakan coba gambar lain.');
+      }
+    }
+
+    async function removeMemberPhoto(memberIndex) {
+      await idbDeletePhoto(memberIndex);
+      if (memberPhotoUrls[memberIndex]) {
+        URL.revokeObjectURL(memberPhotoUrls[memberIndex]);
+        delete memberPhotoUrls[memberIndex];
+      }
+      await renderMembers();
+      showToast(`🗑️ Foto Anggota ${memberIndex} dihapus.`);
+    }
+
+
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes)) return 'Tidak tersedia';
+      const units = ['B', 'KB', 'MB', 'GB'];
+      let value = bytes;
+      let unitIndex = 0;
+      while (value >= 1024 && unitIndex < units.length - 1) { value /= 1024; unitIndex++; }
+      const precision = unitIndex === 0 ? 0 : value >= 100 ? 0 : value >= 10 ? 1 : 2;
+      return `${value.toFixed(precision)} ${units[unitIndex]}`;
+    }
+
+    function formatDuration(seconds) {
+      if (!Number.isFinite(seconds) || seconds < 0) return 'Tidak tersedia';
+      const total = Math.floor(seconds);
+      const h = Math.floor(total / 3600);
+      const m = Math.floor((total % 3600) / 60);
+      const sec = total % 60;
+      return h ? `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}` : `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+    }
+
+    function qualityLabel(width, height) {
+      if (!width || !height) return 'Tidak tersedia';
+      const shortSide = Math.min(width, height);
+      if (shortSide <= 400) return '360p';
+      if (shortSide <= 540) return '480p';
+      if (shortSide <= 800) return '720p';
+      if (shortSide <= 1200) return '1080p';
+      if (shortSide <= 1600) return '1440p';
+      return `${height}p (di atas 1440p)`;
+    }
+
+    function refreshMediaInfo(file, kind, duration = NaN, width = null, height = null) {
+      const info = document.getElementById('media-info');
+      info.classList.remove('hidden');
+      document.getElementById('info-name').textContent = file?.name || 'Tidak tersedia';
+      document.getElementById('info-size').textContent = file ? formatBytes(file.size) : 'Tidak tersedia';
+      document.getElementById('info-format').textContent = file?.type || (file?.name?.split('.').pop()?.toUpperCase() || 'Tidak tersedia');
+      document.getElementById('info-duration').textContent = formatDuration(duration);
+      document.getElementById('info-resolution').textContent = kind === 'video' && width && height ? `${width} × ${height}` : 'Tidak tersedia';
+      document.getElementById('info-quality').textContent = kind === 'video' ? qualityLabel(width, height) : 'Original Quality';
+      if (kind === 'video' && width && height) updateQualityUI(width, height);
+      else document.getElementById('quality-panel').classList.add('hidden');
+    }
+
+    function updateQualityUI(width, height) {
+      const panel = document.getElementById('quality-panel');
+      const select = document.getElementById('quality-select');
+      const status = document.getElementById('quality-status');
+      panel.classList.remove('hidden');
+      const sourceShort = Math.min(width || 0, height || 0);
+      const sourceQuality = qualityLabel(width, height);
+      if (sourceShort) {
+        status.textContent = `Sumber: ${width} × ${height} (${sourceQuality}). Tanpa engine transcoding, halaman ini tidak mengubah resolusi file; pilihan di atas hanya preferensi output dan playback tetap memakai file asli.`;
+        select.value = String([360,480,720,1080,1440].reduce((best, q) => Math.abs(q-sourceShort) < Math.abs(best-sourceShort) ? q : best, 720));
+      }
+    }
+
+    function handleQualityChange() {
+      if (!activeMediaFile || getMediaKind(activeMediaFile) !== 'video') return;
+      const selected = document.getElementById('quality-select').value;
+      const status = document.getElementById('quality-status');
+      status.textContent = `Pilihan output ${selected}p tersimpan sebagai preferensi. Transcoding/upscaling tidak aktif di halaman ini, sehingga video tetap diputar pada resolusi file asli.`;
+      document.getElementById('info-quality').textContent = sourceVideoWidth && sourceVideoHeight ? qualityLabel(sourceVideoWidth, sourceVideoHeight) : 'Original Quality';
+      setStorage(STORAGE_KEYS.quality, selected);
+    }
+
+    function resetLocalData() {
+      const confirmed = window.confirm('Reset data lokal? Ini akan menghapus progress, Nama/No. Absen/Kelas, dan foto anggota yang tersimpan di perangkat. Media yang sedang dipreview tidak disimpan permanen.');
+      if (!confirmed) return;
+      currentMaterial = 0;
+      setStorage(STORAGE_KEYS.progress, '0');
+      setStorage(STORAGE_KEYS.quality, '720');
+      members = defaultMembers.map(m => ({ ...m }));
+      try { localStorage.removeItem(STORAGE_KEYS.members); } catch (_) {}
+      Promise.all(Array.from({ length: 6 }, (_, i) => idbDeletePhoto(i + 1))).finally(async () => {
+        await renderMembers();
+        clearActiveMedia();
+        document.getElementById('media-input').value = '';
+        hideAlert('media-alert');
+        renderMaterial();
+        navigate('home');
+        showToast('✅ Data lokal berhasil direset.');
+      });
+    }
+
+    function getMediaKind(file) {
+      const mime = String(file.type || '').toLowerCase();
+      if (mime.startsWith('video/')) return 'video';
+      if (mime.startsWith('audio/')) return 'audio';
+      const name = String(file.name || '').toLowerCase();
+      const ext = name.includes('.') ? name.split('.').pop() : '';
+      return EXTENSION_TYPES[ext] || '';
+    }
+
+    function clearActiveMedia() {
+      const video = document.getElementById('media-video');
+      const audio = document.getElementById('media-audio');
+      video.pause();
+      audio.pause();
+      video.removeAttribute('src');
+      audio.removeAttribute('src');
+      video.load();
+      audio.load();
+      video.classList.add('hidden');
+      audio.classList.add('hidden');
+      document.getElementById('media-placeholder').classList.remove('hidden');
+      document.getElementById('media-remove').classList.add('hidden');
+      if (activeMediaUrl) URL.revokeObjectURL(activeMediaUrl);
+      activeMediaUrl = '';
+      activeMediaFile = null;
+      sourceVideoWidth = null;
+      sourceVideoHeight = null;
+      document.getElementById('media-info').classList.add('hidden');
+      document.getElementById('quality-panel').classList.add('hidden');
+    }
+
+    function handleMediaError(kind) {
+      setAlert('media-alert', 'error', kind === 'video'
+        ? '⚠️ Media berhasil dipilih, tetapi browser tidak dapat memutarnya. Coba gunakan MP4 atau WebM.'
+        : '⚠️ Format atau codec audio ini tidak didukung oleh browser Anda. Coba gunakan MP3, WAV, OGG, atau M4A.');
+    }
+
+    function handleMediaFile(file) {
+      hideAlert('media-alert');
+      if (!file) return;
+
+      if (file.size === 0) {
+        setAlert('media-alert', 'error', '⚠️ File tidak dapat digunakan karena berukuran 0 byte atau tidak valid. Silakan pilih file lain.');
+        document.getElementById('media-input').value = '';
+        return;
+      }
+
+      if (file.size > MAX_MEDIA_BYTES) {
+        setAlert('media-alert', 'error', '⚠️ Ukuran file terlalu besar. Maksimal ukuran media adalah 1 GB.');
+        document.getElementById('media-input').value = '';
+        return;
+      }
+
+      const kind = getMediaKind(file);
+      if (!kind) {
+        setAlert('media-alert', 'error', '⚠️ Format media ini tidak dapat digunakan oleh komponen ini. Pilih video/audio dengan codec yang didukung browser.');
+        document.getElementById('media-input').value = '';
+        return;
+      }
+
+      clearActiveMedia();
+      activeMediaFile = file;
+      activeMediaUrl = URL.createObjectURL(file);
+      const video = document.getElementById('media-video');
+      const audio = document.getElementById('media-audio');
+      const placeholder = document.getElementById('media-placeholder');
+      placeholder.classList.add('hidden');
+
+      const player = kind === 'video' ? video : audio;
+      player.src = activeMediaUrl;
+      player.classList.remove('hidden');
+      document.getElementById('media-remove').classList.remove('hidden');
+      player.onloadedmetadata = () => {
+        if (kind === 'video') {
+          sourceVideoWidth = player.videoWidth || null;
+          sourceVideoHeight = player.videoHeight || null;
+        }
+        refreshMediaInfo(file, kind, player.duration, player.videoWidth || null, player.videoHeight || null);
+        const savedQuality = loadStorage(STORAGE_KEYS.quality, '720');
+        const select = document.getElementById('quality-select');
+        if (kind === 'video' && select) select.value = ['360','480','720','1080','1440'].includes(savedQuality) ? savedQuality : '720';
+        setAlert('media-alert', 'success', `✅ ${kind === 'video' ? 'Video' : 'Audio'} siap diputar. File tetap berada di perangkat Anda.`);
+      };
+      player.onloadeddata = () => {
+        if (kind === 'video' && player.videoWidth && player.videoHeight) {
+          sourceVideoWidth = player.videoWidth;
+          sourceVideoHeight = player.videoHeight;
+          refreshMediaInfo(file, kind, player.duration, player.videoWidth, player.videoHeight);
+        }
+      };
+      player.onerror = () => handleMediaError(kind);
+      player.load();
+    }
+
+    function initEvents() {
+      document.querySelectorAll('[data-nav]').forEach(btn => btn.addEventListener('click', () => navigate(btn.dataset.nav)));
+      document.getElementById('menu-toggle').addEventListener('click', toggleMobileMenu);
+      document.querySelector('[data-action="start-learning"]').addEventListener('click', () => navigate('materi'));
+      document.getElementById('material-prev').addEventListener('click', () => moveMaterial(-1));
+      document.getElementById('material-next').addEventListener('click', () => moveMaterial(1));
+      document.getElementById('restart-learning').addEventListener('click', restartLearning);
+      document.getElementById('media-pick').addEventListener('click', () => document.getElementById('media-input').click());
+      document.getElementById('media-input').addEventListener('change', event => handleMediaFile(event.target.files?.[0]));
+      document.getElementById('quality-select').addEventListener('change', handleQualityChange);
+      document.getElementById('reset-data').addEventListener('click', resetLocalData);
+      document.getElementById('media-remove').addEventListener('click', () => {
+        document.getElementById('media-input').value = '';
+        clearActiveMedia();
+        hideAlert('media-alert');
+        showToast('🗑️ Media dihapus dari halaman.');
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeMobileMenu();
+      });
+      window.addEventListener('beforeunload', () => {
+        if (activeMediaUrl) URL.revokeObjectURL(activeMediaUrl);
+        Object.values(memberPhotoUrls).forEach(url => URL.revokeObjectURL(url));
+      });
+    }
+
+    async function init() {
+      if (!storageAvailable()) {
+        showStorageWarning('LocalStorage tidak tersedia. Website tetap dapat digunakan, tetapi data anggota dan progress tidak akan disimpan setelah halaman ditutup.');
+      }
+      initEvents();
+      const savedQuality = loadStorage(STORAGE_KEYS.quality, '720');
+      document.getElementById('quality-select').value = ['360','480','720','1080','1440'].includes(savedQuality) ? savedQuality : '720';
+      renderMaterial();
+      await renderMembers();
+      navigate('home');
+    }
+
+    init();
+  </script>
+</body>
+</html>
